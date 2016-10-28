@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+	#page{width: 400px;margin: 0 auto;background: #F5F5F5;border: 1px solid #CDCDCD;padding-left: 30px;position: relative;padding-bottom: 20px;}
+	#inp{width: 350px;}
+	#tea{width: 350px;}
+	.span1{display: block;margin-top: 15px;}
+	#span2{font-size: 14px;color: #008100;position: absolute;right: 10px;top: 250px;}
+	#span3{display: block;margin-top: 15px;font-size: 36px;font-weight: bold;}
+	#btn{width: 100px;height: 35px;text-align: center;line-height: 35px;font-size: 23px;margin-top: 25px;}
+	dt{width: 360px;height: 20px; background: #CDCDCD;font-size: 16px;font-weight: bold;overflow: hidden;}
+	var{float: right;color: #FD0E17;text-decoration: underline;margin-right: 5px;cursor: pointer;}
+	dd{width: 310px;font-size: 14px;padding-top: 20px;}
+	</style>
+</head>
+<body>
+	<div id="page">
+		<div id="inner">
+			<span class="span1">标题：</span>
+			<input id="inp" type="text"><br>
+			<span class="span1">内容：</span>
+			<textarea id="tea" name="" id="" cols="30" rows="10" maxlength="200"></textarea><br>
+			<span id="span2">还可以输入200字</span>
+			<button id="btn">发布</button>
+			<span id="span3">显示内容</span>
+		</div>
+		
+	</div>
+
+<script>
+	var tea=document.getElementById('tea');
+	var span2=document.getElementById('span2');
+	var inp=document.getElementById('inp');
+	var page=document.getElementById('page');
+	tea.onkeyup=function () {
+		span2.innerHTML='还可以输入'+(200-tea.value.length)+'字';
+	}
+	tea.onmouseup=function () {
+		span2.innerHTML='还可以输入'+(200-tea.value.length)+'字';
+	}
+	btn.onclick=function () {
+		var title=inp.value;
+		var con=tea.value;
+		dla=document.createElement('dl');
+		dla.innerHTML='<dt><span>'+title+'</span><var>x</var></dt><dd>'+con+'</dd>';
+		var dls=page.getElementsByTagName('dl');
+
+		if (dls.length==0) {
+			page.appendChild(dla);
+		}else{
+			page.insertBefore(dla,page.children[1]);
+		}
+		
+		var vars=document.getElementsByTagName('var');
+		for (var i = 0; i < vars.length; i++) {
+			vars[i].onclick=function () {
+				page.removeChild(this.parentNode.parentNode);
+			}
+		};
+	}
+	
+	
+</script>
+</body>
+</html>
